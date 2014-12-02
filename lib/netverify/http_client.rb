@@ -6,8 +6,8 @@ module Netverify
   class HTTPClient
     ResponseError = Class.new(StandardError)
 
-    def initialize(url)
-      @url = url
+    def initialize(url, string_camelizer)
+      @url, @string_camelizer = url, string_camelizer
     end
 
     def post_json(data)
@@ -23,7 +23,7 @@ module Netverify
     def camelized_json(data)
       hash = data.
         delete_if { |_, value| value.nil? }.
-        transform_keys(&method(:camelize_key))
+        transform_keys { |key| @string_camelizer.camelize(key) }
 
       JSON.dump(hash)
     end

@@ -15,7 +15,7 @@ module Netverify
         successUrl:              'http://example.com/success',
         errorUrl:                'http://example.com/error',
         merchantIdScanReference: 'random-uuid',
-        customerID:              '1234'
+        customerId:              '1234'
       }
     end
 
