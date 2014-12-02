@@ -6,7 +6,7 @@ module Netverify
     let(:params) do
       {
         authorization_token: authorization_token,
-        locale: 'so'
+        locale:              'so'
       }
     end
 

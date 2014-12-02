@@ -6,16 +6,16 @@ module Netverify
     let(:params) do
       {
         success_url: 'http://example.com/success',
-        error_url: 'http://example.com/error',
+        error_url:   'http://example.com/error',
         customer_id: '1234'
       }
     end
     let(:valid_request_body) do
       {
-        successUrl: 'http://example.com/success',
-        errorUrl: 'http://example.com/error',
+        successUrl:              'http://example.com/success',
+        errorUrl:                'http://example.com/error',
         merchantIdScanReference: 'random-uuid',
-        customerID: '1234'
+        customerID:              '1234'
       }
     end
 

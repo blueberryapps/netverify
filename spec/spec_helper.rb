@@ -9,11 +9,11 @@ SimpleCov.start
 WebMock.disable_net_connect!
 
 Netverify.configure do |config|
-  config.token    = 'token-1234'
-  config.secret   = 'secret-1234'
-  config.company_name = 'Blueberry'
-  config.application_name     = 'NetverifyTest'
-  config.version  = '1.0.0'
+  config.token            = 'token-1234'
+  config.secret           = 'secret-1234'
+  config.company_name     = 'Blueberry'
+  config.application_name = 'NetverifyTest'
+  config.version          = '1.0.0'
 end
 
 RSpec.configure do |config|

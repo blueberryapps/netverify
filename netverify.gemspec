@@ -15,8 +15,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Lukáš Voda']
   s.email       = 'lvoda@blueberryapps.com'
 
-  s.files =
-    Dir['{lib}/**/*']
+  s.files      = Dir['{lib}/**/*']
   s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'activesupport'

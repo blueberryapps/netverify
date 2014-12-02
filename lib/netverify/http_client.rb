@@ -29,7 +29,7 @@ module Netverify
     end
 
     def underscored_json(json)
-      JSON.parse(json).transform_keys! { |key| key.underscore }
+      JSON.parse(json).transform_keys!(&:underscore)
     end
 
     def camelize_key(key)
@@ -44,15 +44,15 @@ module Netverify
 
     def request
       @request ||= Net::HTTP::Post.new(uri).tap do |request|
-        request['Accept'] = 'application/json'
+        request['Accept']       = 'application/json'
         request['Content-Type'] = 'application/json'
-        request['User-Agent'] = user_agent
+        request['User-Agent']   = user_agent
         request.basic_auth(config.token, config.secret)
       end
     end
 
     def run_request!
-      response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: use_ssl) do |http|
+      response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: use_ssl?) do |http|
         http.request(request)
       end
 
@@ -65,7 +65,7 @@ module Netverify
       @uri ||= URI(@url)
     end
 
-    def use_ssl
+    def use_ssl?
       uri.scheme == 'https'
     end
 
