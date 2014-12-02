@@ -2,6 +2,7 @@ require 'virtus'
 
 require_relative 'netverify/configuration'
 require_relative 'netverify/http_client'
+require_relative 'netverify/string_camelizer'
 require_relative 'netverify/embedded'
 require_relative 'netverify/response'
 require_relative 'netverify/iframe'

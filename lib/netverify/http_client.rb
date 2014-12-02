@@ -6,8 +6,8 @@ module Netverify
   class HTTPClient
     ResponseError = Class.new(StandardError)
 
-    def initialize(url)
-      @url = url
+    def initialize(url, string_camelizer)
+      @url, @string_camelizer = url, string_camelizer
     end
 
     def post_json(data)
@@ -23,13 +23,13 @@ module Netverify
     def camelized_json(data)
       hash = data.
         delete_if { |_, value| value.nil? }.
-        transform_keys(&method(:camelize_key))
+        transform_keys { |key| @string_camelizer.camelize(key) }
 
       JSON.dump(hash)
     end
 
     def underscored_json(json)
-      JSON.parse(json).transform_keys! { |key| key.underscore }
+      JSON.parse(json).transform_keys!(&:underscore)
     end
 
     def camelize_key(key)
@@ -44,15 +44,15 @@ module Netverify
 
     def request
       @request ||= Net::HTTP::Post.new(uri).tap do |request|
-        request['Accept'] = 'application/json'
+        request['Accept']       = 'application/json'
         request['Content-Type'] = 'application/json'
-        request['User-Agent'] = user_agent
+        request['User-Agent']   = user_agent
         request.basic_auth(config.token, config.secret)
       end
     end
 
     def run_request!
-      response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: use_ssl) do |http|
+      response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: use_ssl?) do |http|
         http.request(request)
       end
 
@@ -65,7 +65,7 @@ module Netverify
       @uri ||= URI(@url)
     end
 
-    def use_ssl
+    def use_ssl?
       uri.scheme == 'https'
     end
 

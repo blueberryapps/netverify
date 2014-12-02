@@ -65,5 +65,9 @@ module Netverify
     def endpoint_url
       'https://netverify.com/api/netverify/v2/createDocumentAcquisition'
     end
+
+    def string_camelizer
+      StringCamelizer.new(customer_id: 'customerID')
+    end
   end
 end

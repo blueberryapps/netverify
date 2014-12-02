@@ -62,13 +62,13 @@ module Netverify
     #  - "de" (German)
     #  - "en" (American English, default)
     #  - "en_GB" (British English)
-    #  - "es" (Spanish)-
+    #  - "es" (Spanish)
     #  - "fi" (Finnish)
     #  - "fr" (French)
     #  - "it" (Italian)
     #  - "no" (Norwegian)
     #  - "pl" (Polish)
-    #  - "pt" (Portuguese)-
+    #  - "pt" (Portuguese)
     #  - "ru" (Russian)
     #  - "sv" (Swedish)
     #  - "tr" (Turkish)
@@ -127,7 +127,7 @@ module Netverify
 
     def response
       http_response = run_request!
-      IframeResponse.new(http_response)
+      IframeResponse.new(http_response.merge(locale: locale))
     end
 
     private

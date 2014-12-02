@@ -20,8 +20,12 @@ module Netverify
 
     def run_request!
       HTTPClient.
-        new(endpoint_url).
+        new(endpoint_url, string_camelizer).
         post_json(attributes)
+    end
+
+    def string_camelizer
+      StringCamelizer.new
     end
   end
 end
