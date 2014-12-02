@@ -127,7 +127,7 @@ module Netverify
 
     def response
       http_response = run_request!
-      IframeResponse.new(http_response)
+      IframeResponse.new(http_response.merge(locale: locale))
     end
 
     private

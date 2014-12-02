@@ -13,12 +13,16 @@ module Netverify
     # Jumio's reference number for each scan
     attribute :jumio_id_scan_reference, String
 
+    # Internal, passed when IframeResponse object created
+    attribute :locale, String
+
     def script_tag(container_id: 'JUMIOIFRAME')
       <<-SCRIPT.strip_heredoc
         <script src="#{WIDGET_URL}"></script>
         <script>
           JumioClient.setVars({
-            authorizationToken: "#{authorization_token}"
+            authorizationToken: "#{authorization_token}",
+            locale: #{locale.to_json},
           }).initVerify("#{container_id}");
         </script>
       SCRIPT

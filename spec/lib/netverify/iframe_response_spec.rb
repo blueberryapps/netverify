@@ -5,7 +5,8 @@ module Netverify
     let(:authorization_token) { 'auth-token-1234' }
     let(:params) do
       {
-        authorization_token: authorization_token
+        authorization_token: authorization_token,
+        locale: 'so'
       }
     end
 
@@ -17,6 +18,10 @@ module Netverify
       it 'uses passed container_id to initialize verification' do
         expect(subject.script_tag(container_id: 'SOME_ID')).
           to include 'initVerify("SOME_ID")'
+      end
+
+      it 'uses passed locale to initialize verification' do
+        expect(subject.script_tag).to include 'locale: "so"'
       end
     end
   end
