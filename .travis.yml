@@ -5,3 +5,7 @@ rvm:
   - 2.1.5
 
 script: bundle exec rspec spec
+
+notifications:
+  webhooks:
+    - http://blueberry-projectmonitor.herokuapp.com/projects/5091663c-68b0-43c3-a7dd-6d646de190c8/status
