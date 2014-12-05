@@ -18,8 +18,8 @@ module Netverify
 
     def script_tag(container_id: 'JUMIOIFRAME')
       <<-SCRIPT.strip_heredoc
-        <script src="#{WIDGET_URL}"></script>
-        <script>
+        <script src="#{WIDGET_URL}" type="text/javascript"></script>
+        <script type="text/javascript">
           JumioClient.setVars({
             authorizationToken: "#{authorization_token}",
             locale: #{locale.to_json},
